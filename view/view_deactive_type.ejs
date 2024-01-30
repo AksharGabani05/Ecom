@@ -1,0 +1,72 @@
+<%-include("header")%>
+ <!-- Table Start -->
+ <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Deactive Type</h6>
+                <form width="100%" >
+                    <input type="text" name="search" class="form-control" placeholder="search hear.." value="<%=search%>" style="position: relative;">
+                    <input type="submit" class="btn btn-primary m-2"  value="search" style="position: absolute;
+                    top: 146px;
+                    right: 41px;"/>
+                </form>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">categary</th>
+                                <th scope="col">Sub categary</th>
+                                <th scope="col">extra categary</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%if(viet !=''){%>
+                            <% var i=1;for(var ad of viet){%>
+                            <tr>
+                                <th><%=i++%></th> 
+                                <td><%=ad.Typecategary.categary_name%></td>
+                                <td><%= ad.Typesubcategary.subcategary_name %></td>
+                                <td><%= ad.Typeextracategary.extracategary_name %></td>
+                                <td><%=ad.Typebrand.Brand%></td>
+                                <td><%=ad.Type%></td>
+                                <td><% if(ad.IsActive){%>
+                                    <a href="/admin/type/isactive/<%=ad.id%>" class=" px-1 text-success">Active</a>
+                                    <%}else{%>
+                                        <a href="/admin/type/isdeactive/<%=ad.id%>" class="px-1 text-danger">Deactive</a>
+                                    <%}%>
+                                </td>
+                                <td >update || delete</td>
+                            </tr>
+                          <%}} else{%>
+                                <tr>
+                                    <td colspan="8">No Record Found!!</td>
+                                </tr>
+                            <%}%>
+                            <tr>
+                                <td colspan="10" align="center"> 
+                                    <%var prepage =  parseInt(curentpage)-1%>
+                                    <%if(prepage>=0){%>
+                                        <a href="?page=<%=prepage%>&search=<%=search%>">back</a>
+                                    <%}%>
+                                    <a href="?page=<%=curentpage%>&search=<%=search%>"><%=parseInt(curentpage)+1%></a>
+                                    <%var nextpage =  parseInt(curentpage)+1%>
+                                    <%if(totalDocument>nextpage){%>
+                                        <a href="?page=<%=nextpage%>&search=<%=search%>">next</a>
+                                    <%}%>
+                                </td>
+                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Table End -->
+<%-include("footer")%>

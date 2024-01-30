@@ -1,0 +1,130 @@
+  <!-- Footer Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded-top p-4">
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center text-sm-start">
+                &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+            </div>
+            <div class="col-12 col-sm-6 text-center text-sm-end">
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+</div>
+<!-- Content End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/chart/chart.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+</body>
+
+</html>
+<script>
+    function getsubcategarydata(){
+        let catdata = document.getElementById('categaryid').value;
+        // alert(catdata);
+        $.ajax({
+            url:'/admin/extracategary/getsubcategaryrecod',
+            method:'post',
+            data:{
+                'catid':catdata
+            },
+            success:function(res){
+                $("#subcategaryid").html(res);
+            }
+        })
+    }
+    function getextracategarydata(){
+        let excatdata = document.getElementById('categaryid').value;
+        let subcatdata = document.getElementById('subcategaryid').value;
+        // alert(excatdata);
+        // alert(subcatdata);
+        $.ajax({
+            url:'/admin/Brand/getextracategaryrecod',
+            method:'post',
+            data:{
+                'excatid':excatdata,
+                'subcatid':subcatdata
+            },
+            success:function(res){
+                $("#extracatd").html(res);
+            }
+        })
+    }
+    function getebranddata(){
+        let excatdata = document.getElementById('categaryid').value;
+        let subcatdata = document.getElementById('subcategaryid').value;
+        let extarcatdata = document.getElementById('extracatd').value;
+        // alert(excatdata);
+        // alert(subcatdata);
+        $.ajax({
+            url:'/admin/type/getbrandrecod',
+            method:'post',
+            data:{
+                'excatid':excatdata,
+                'subcatid':subcatdata,
+                'extacatid':extarcatdata,
+            },
+            success:function(res){
+                $("#brandid").html(res);
+            }
+        })
+    }
+    function getebrandtypedata(){
+        let excatdata = document.getElementById('categaryid').value;
+        let subcatdata = document.getElementById('subcategaryid').value;
+        let extarcatdata = document.getElementById('extracatd').value;
+        let branddata = document.getElementById('brandid').value;
+        // alert(excatdata)
+        // alert(subcatdata)
+        // alert(extarcatdata)
+        // alert(branddata)
+        $.ajax({
+            url:'/admin/Product/getbrandtyperecod',
+            method:'post',
+            data:{
+                'excatid':excatdata,
+                'subcatid':subcatdata,
+                'extacatid':extarcatdata,
+                'branddata':branddata
+            },
+            success:function(res){
+                $("#ptypeid").html(res);
+            }
+        })
+    }
+
+</script>
+<%if(locals.flash.success && locals.flash.success.length>0){%>		
+    <script>
+        new Noty({
+        type: 'success',
+        theme:'metroui',
+        layout: 'topCenter',
+        text: '<%=locals.flash.success%>',
+        timeout:1000
+    }).show();
+    </script>
+<%}%>
+</script>
+

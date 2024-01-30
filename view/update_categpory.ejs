@@ -1,0 +1,21 @@
+<%-include("header")%>
+    <!-- Form Start -->
+      <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">ADD Categary</h6>
+                    <form action="/admin/categary/editcategorydata" method="post">
+                        <input type="hidden" name="EditId" value="<%= catdata.id%>" >
+                        <div class="mb-3">
+                            <label for="" class="form-label">categary</label>
+                            <input type="text" class="form-control" placeholder="enter categary" name="categary_name" value="<%=catdata.categary_name%>">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                    </form>
+                </div>
+           
+     
+    </div>
+    <!-- Form End -->
+    <%-include("footer")%>

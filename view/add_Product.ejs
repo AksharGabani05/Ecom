@@ -1,0 +1,105 @@
+<%-include("header")%>
+    <!-- Form Start -->
+      <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">ADD Product</h6>
+                    <form action="/admin/Product/insertproduct" method="post" enctype="multipart/form-data">
+                        
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">categary</label>
+                            <select class="form-select mb-3" name="Productcategary" id="categaryid" onchange="return getsubcategarydata()" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var catdat of tcat){%>
+                                <option  value="<%=catdat.id %>"><%=catdat.categary_name%></option>
+                                <%}%>
+                            </select>
+                        </div> 
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1"class="form-label">Sub categary</label>
+                            <select class="form-select mb-3"  onchange="return getextracategarydata()"  id="subcategaryid" name="Productsubcategary" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var subcat of tsubcat){%>
+                                    <option value="<%= subcat.id %>"><%= subcat.subcategary_name %></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Extra categary</label>
+                            <select class="form-select mb-3" onchange="return getebranddata()" id="extracatd" name="Productextracategary" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var extacat of textcat){%>
+                                    <option value="<%= extacat.id %>"><%= extacat.extracategary_name %></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div id="brtyids">
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Brand</label>
+                                <select class="form-select mb-3" id="brandid" name="Productbrand" aria-label="Default select example" onchange="return getebrandtypedata()">
+                                    <option>-select-Brand-</option>
+                                    <% for(var bd of tbd){%>
+                                        <option value="<%= bd.id %>"><%= bd.Brand %></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Type</label>
+                                <select class="form-select mb-3" id="ptypeid" name="ProductType" aria-label="Default select example">
+                                    <option>-select-categary-</option>
+                                    <% for(var td of ptd){%>
+                                        <option value="<%= td.id %>"><%= td.Type %></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Product Title</label>
+                            <input type="text" class="form-control" placeholder="enter Product Title" name="product_title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Product Price</label>
+                            <input type="text" class="form-control" placeholder="enter Product Price" name="product_price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Product Old Price</label>
+                            <input type="text" class="form-control" placeholder="enter Product old Price" name="product_old_price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">product color</label>
+                            <input type="text" class="form-select mb-3" name="Product_color" aria-label="Default select example" placeholder="enter Product color" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">product size</label>
+                            <input type ="text"  class="form-select mb-3" name="Product_size" aria-label="Default select example"  placeholder="enter Product size" >
+                                
+                        </div>
+                       
+                    
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Product Discription</label>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="product Discription" id="floatingTextarea" style="height: 150px;" name="product_Discription"></textarea>
+                            <label for="floatingTextarea">Discription..!</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Image</label>
+                        <input class="form-control bg-dark" type="file" name="ProductImage" id="formFile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileMultiple" class="form-label">Multiple product image</label>
+                        <input class="form-control bg-dark" name="multipleproductimage" type="file" id="formFileMultiple" multiple>
+                    </div>  
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                    </div>
+                </form>
+          
+                </div>
+
+     
+        </div>
+    <!-- Form End -->
+    <%-include("footer")%>

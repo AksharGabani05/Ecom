@@ -1,0 +1,32 @@
+<%-include("header")%>
+    <!-- Form Start -->
+      <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">ADD Subcategary</h6>
+                    <form action="/admin/subcategary/editesubcategorydata" method="post">
+                        <input type="hidden" name="EditId" value="<%= subcatdata.id%>" >
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">categary</label>
+                            <select class="form-select mb-3" name="sub_categary_name" aria-label="Default select example">
+                                <option value="">-select-category-</option>
+                                <% cr.map((v)=> { %>
+                                    <option value="<%= v.id %>" <% if (v.id == subcatdata.sub_categary_name) { %> <%='selected' %> <%}%> > <%= v.categary_name %></option>
+                                <% }) %>
+                            </select>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">SubCategary name</label>
+                            <input type="text" class="form-control" placeholder="enter Subcategary" name="subcategary_name" value="<%=subcatdata.subcategary_name%>">
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                    </form>
+                </div>
+           
+     
+    </div>
+    <!-- Form End -->
+    <%-include("footer")%>

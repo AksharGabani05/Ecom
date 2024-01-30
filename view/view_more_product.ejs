@@ -1,0 +1,80 @@
+<%- include("header") %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+        .product{
+            padding: 29px;
+        }
+        .product-details {
+            width: 100%;
+            height: 769px;
+        }
+        .product-title{
+            
+            padding: 10px;
+            margin-block: 10px;
+        }
+        .pimg {
+            max-width: 79%;
+            height: 500px;
+            margin: 0 40px;
+        }
+    </style>
+    <title>Product Details</title>
+</head>
+
+<body>
+
+   <div class="product">
+    <div class="container product-details  bg-secondary ">
+        <div class="m-2">
+            <div style="display: flex;
+            align-items: center; margin-block: 10px;padding: 10px;">
+                <a href="/admin/Product/view_Product" class="btn btn-square btn-outline-danger m-2"><i class="fa fa-home"></i></a>
+                <div style="margin: 0 auto;">
+                    <h2 class="product-title">Product Details</h2>
+                </div>
+            </div>
+            <div style="padding:10px;">
+                <div class="row">
+                
+                
+                        <div class="col-md-6">
+                            <td><img src="<%=viebp.ProductImage%>" class="pimg" height="79"/></td>
+                        
+                        <div style="margin: 0 30px;"><%viebp.multipleproductimage.forEach((v,i)=>{%>
+                                <td>
+                                  
+                                        <img src="<%= viebp.multipleproductimage[i] %>" height="50" alt="" style="margin: 10px 8px;">
+                                        
+                           
+                                    
+                                </td>
+                            <%})%>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Category : </strong> <%=viebp.Productcategary.categary_name%></p>
+                            <p><strong>Subcategary : </strong> <%=viebp.Productsubcategary.subcategary_name%></p>
+                            <p><strong>extraCategary : </strong><%=viebp.Productextracategary.extracategary_name%></p>
+                            <p><strong>Brand : </strong><%=viebp.Productbrand.Brand%></p>
+                            <p><strong>Type : </strong> <%=viebp.ProductType.Type%></p>
+                            <p><strong>Namae : </strong><%=viebp.product_title%></p>
+                            <p><strong>Price : </strong> <%=viebp.product_price%></p>
+                            <p><strong>old Price : </strong> <%=viebp.product_old_price%></p>
+                            <p><strong>Color : </strong> <%=viebp.Product_color%></p>
+                            <p><strong>Size : </strong> <%=viebp.Product_size%></p>
+                            <p><strong>Description : </strong> <%=viebp.product_Discription%></p>
+                            <p><strong>Status : </strong> Active</p>
+                        </div>
+                        <a href="/admin/Product/updateproduct/<%=viebp.id%>" style="text-align: center; margin-block: 17px;" class="btn btn-primary">edit product</a>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+<%- include("footer") %>

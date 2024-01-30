@@ -1,0 +1,20 @@
+<div id="brtyids">
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Brand</label>
+        <select class="form-select mb-3" id="brandid" name="Productbrand" aria-label="Default select example">
+            <option>-select-Brand-</option>
+            <% for(var bd of tbd){%>
+                <option value="<%= bd.id %>"><%= bd.Brand %></option>
+            <%}%>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Type</label>
+        <select class="form-select mb-3" id="ptypeid" name="ProductType" aria-label="Default select example">
+            <option>-select-categary-</option>
+            <% for(var td of ptd){%>
+                <option value="<%= td.id %>"><%= td.Type %></option>
+            <%}%>
+        </select>
+    </div>
+</div>

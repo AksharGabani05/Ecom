@@ -1,0 +1,80 @@
+<%-include("header")%>
+    <!-- Form Start -->
+      <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">ADD ADMIN</h6>
+                    <form action="/admin/updateprofile" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="EditId" value="<%= record.id %>" >
+                        <div class="mb-3">
+                            <% var namelist = record.name%>
+                            <% var name = namelist.split(" ") %>
+                            <label for="" class="form-label">First name</label>
+                            <input type="text" class="form-control" placeholder="enter firest name" name="fname" value="<%=name[0]%>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Last name</label>
+                            <input type="text" class="form-control" placeholder="enter last naem" name="lname" value="<%=name[1]%>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" name="email" placeholder="enter email" value="<%= record.email %>" >
+                        </div>
+                      
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">gender</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                                    value="male" <%if(record.gender == 'male'){%> <%='checked'%> <%}%> >male
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                                    value="female"  <%if(record.gender == 'female'){%> <%='checked'%> <%}%> >female
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">hobby</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="hobby" id="inlineRadio1"
+                                    value="reading"  <%if(record.hobby.includes('reading')){%> <%='checked'%> <%}%> > reading
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="hobby" id="inlineRadio2"
+                                    value="traveling" <%if(record.hobby.includes('traveling')){%> <%='checked'%> <%}%> >traveling
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">CITY</label>
+                            <select class="form-select mb-3" name="city" aria-label="Default select example">
+                                <option>-select-city-</option>
+                                <% var city = ['surat','ahemdabad','navsari']%>
+                                <% city.map((v,i)=>{%>
+                                <option  value="<%=v%>"  <%if(record.city==v){%><%='selected'%> <%}%> ><%=v%></option>
+                                <%})%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Discription</label>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Discription" id="floatingTextarea" style="height: 150px;" name="Discription"><%=record.Discription%></textarea>
+                                <label for="floatingTextarea">Discription..!</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Image</label>
+                                <input class="form-control bg-dark" type="file" name="Admineimage" id="formFile">
+                                <img src="<%= record.Admineimage %>" height="50" style="margin-block: 17px;
+                                width: 200px;
+                                height: 200px;"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                    </form>
+                </div>
+           
+     
+    </div>
+    <!-- Form End -->
+    <%-include("footer")%>

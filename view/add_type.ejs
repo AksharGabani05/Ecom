@@ -1,0 +1,58 @@
+<%-include("header")%>
+    <!-- Form Start -->
+      <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">ADD Type</h6>
+                    <form action="/admin/type/inserttype" method="post">
+                        
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">categary</label>
+                            <select class="form-select mb-3" name="Typecategary" id="categaryid" onchange="return getsubcategarydata()" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var catdat of tcat){%>
+                                <option  value="<%=catdat.id %>"><%=catdat.categary_name%></option>
+                                <%}%>
+                            </select>
+                        </div> 
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1"class="form-label">Sub categary</label>
+                            <select class="form-select mb-3"  onchange="return getextracategarydata()"  id="subcategaryid" name="Typesubcategary" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var subcat of tsubcat){%>
+                                    <option value="<%= subcat.id %>"><%= subcat.subcategary_name %></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Extra categary</label>
+                            <select class="form-select mb-3" onchange="return getebranddata()" id="extracatd" name="Typeextracategary" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var extacat of textcat){%>
+                                    <option value="<%= extacat.id %>"><%= extacat.extracategary_name %></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Brand</label>
+                            <select class="form-select mb-3" id="brandid" name="Typebrand" aria-label="Default select example">
+                                <option>-select-categary-</option>
+                                <% for(var bd of tbd){%>
+                                    <option value="<%= bd.id %>"><%= bd.extracategary_name %></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">type name</label>
+                            <input type="text" class="form-control" placeholder="enter Type" name="Type">
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                    </form>
+                </div>
+           
+     
+    </div>
+    <!-- Form End -->
+    <%-include("footer")%>
