@@ -1,7 +1,8 @@
 const Admin = require("../model/admin")
 const nodemailer = require("nodemailer") ;
 const path = require("path");
-const fs = require('fs')
+const fs = require('fs');
+const { log } = require("console");
 //login
 module.exports.login = async(req,res)=>{
     if(req.user){
@@ -26,39 +27,42 @@ module.exports.add_admin = async(req,res)=>{
     }
     var adminrecord = req.user
     return res.render("add_admin",{
-        record : adminrecord
+        record : adminrecord,
     })
 }
 //insert admin 
 module.exports.insertadminrecord = async(req,res)=>{
-    // console.log(req.body);
-    // console.log(req.file);
-    try{
-        let imgpath = '';
-        req.body.name = req.body.fname+" "+req.body.lname;
-        if(req.file){
-            imgpath = await Admin.Adminimagepath + "/"+req.file.filename;
-            
-        }
-        req.body.Admineimage = imgpath;
-        req.body.IsActive = true;
-        req.body.Create_Date = new Date().toLocaleString();
-        req.body.Upadate_Date = new Date().toLocaleString();
-        req.body.role = 'admin';
-        let AdminData = await Admin.create(req.body);
-
-        if(AdminData){
-            
-            // console.log("admin recored inserted");
-            req.flash("success","admin record add ssuccessfully")
-            return res.redirect('back');
-        }
-        else{
-            console.log("admin recored is not")
-        }
+    
+    try {
+            let imgpath = '';
+            req.body.name = req.body.fname+" "+req.body.lname;
+            if(req.file){
+                imgpath = await Admin.Adminimagepath + "/"+req.file.filename;
+                
+            }
+            req.body.Admineimage = imgpath;
+            req.body.IsActive = true;
+            req.body.Create_Date = new Date().toLocaleString();
+            req.body.Upadate_Date = new Date().toLocaleString();
+            req.body.role = 'admin';
+            let AdminData = await Admin.create(req.body); 
+          
+    
+            if(AdminData){
+                    // console.log("admin recored inserted");
+                    req.flash("success","admin record add ssuccessfully")
+                    return res.redirect('back');
+              
+            }
+        
+            else{
+                console.log("admin recored is not found")
+            }  
+         
     }
     catch(err){
-        console.log("admin data is not insert")
+        console.log(err);
+        return res.render('error')
     }
 }
 module.exports.view_admin = async(req,res)=>{

@@ -3,23 +3,22 @@ const port = 8090;
 const app = express();
 const path = require('path');
 
-// const db = require('./config/mongoose');
+const db = require('./config/mongoose');//offline database leva mate ane un coment karvi
 
-
-
-const mongoose = require('mongoose')
-mongoose.connect(("mongodb+srv://kanabarakshar08:AKSHAR@akshar.7qjb0c5.mongodb.net/Ecommerce"), {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-})
-    .then(() => console.log('Database Connected'))
-    .catch((err) => console.log(err));
+// const mongoose = require('mongoose')
+// mongoose.connect(("mongodb+srv://kanabarakshar08:AKSHAR@akshar.7qjb0c5.mongodb.net/Ecommerce"), {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true
+// })
+//     .then(() => console.log('Database Connected'))
+//     .catch((err) => console.log(err)); //offline daqtabase letivakhte a code ne comment karvo 
 
 
 app.set('views',path.join(__dirname,'view'));
 app.set('view engine','ejs');
 const falsh = require('connect-flash');
 app.use(falsh())
+app.use(express.json());
 const custmflash = require("./config/Custemflash");
 
 const cookieParser = require('cookie-parser');
