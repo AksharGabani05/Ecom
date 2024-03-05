@@ -288,9 +288,9 @@ module.exports.payment = async(req,res)=>{
        
         var countCart = await cart.find({userId:req.user.id,status:'pending'}).countDocuments();
         cartPendingData = await cart.find({userId:req.user.id,status:'pending'}).populate('productId').exec();
-    var sum =0; var i=1;
-    for(var cd of cartPendingData){
-        var total = cd.quantity * cd.productId.product_price;
+        var sum =0; var i=1;
+        for(var cd of cartPendingData){
+            var total = cd.quantity * cd.productId.product_price;
         sum += sum + total;
         ++i;
     }

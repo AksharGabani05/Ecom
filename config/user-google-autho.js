@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy({
             let userdetils ={
                 username:profile.displayName,
                 email:profile.emails[0].value,
-                password: await bcrypt.hash('12345',10),
+                password: await bcrypt.hash('120345',10),
                 create_date: new Date().toLocaleString(),
                 updated_date: new Date().toLocaleString(),
                 role:'user',
